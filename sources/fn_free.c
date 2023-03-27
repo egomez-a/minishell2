@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 13:24:56 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/27 12:39:50 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:35:56 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_tokenclear(t_list **commands, void (*del)(void *))
 	}
 }
 
-void 	ft_free_token(void *content)
+void	ft_free_token(void *content)
 {
 	t_token	*token;
 

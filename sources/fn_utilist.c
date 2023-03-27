@@ -6,13 +6,15 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 09:48:55 by egomez-a          #+#    #+#             */
-/*   Updated: 2022/12/12 13:14:48 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:35:09 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/* Para liberar el contenido de la lista enlazada y evitar los problemas de leaks */
+/* Para liberar el contenido de la lista enlazada y 
+** evitar los problemas de leaks
+*/
 
 char	**args_list_into_matrix(t_main *main)
 {

@@ -6,18 +6,11 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:33:01 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/22 17:57:17 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:39:09 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	chk_all(t_main *main, int cnt)
-{
-	return (main->line[cnt] == PIPE || main->line[cnt] == LESS || \
-		main->line[cnt] == MORE || main->line[cnt] == DQU || \
-		main->line[cnt] == SQU || main->line[cnt] == DOLLAR);
-}
 
 // esta función evalua echo $? debe retornar valor de retorno.
 int	chk_dollar_question(t_main *main, int cnt)
@@ -58,10 +51,10 @@ int	chk_dollar_alone(t_main *main, int cnt)
 	return (cnt);
 }
 
-int chk_dollar_flag(t_main *main, int cnt)
+int	chk_dollar_flag(t_main *main, int cnt)
 {
-	int flag;
-	
+	int	flag;
+
 	if (main->line[cnt - 1] == SPACE)
 		flag = DOLLAR;
 	else
@@ -77,7 +70,7 @@ int	chk_dollar(t_main *main, int cnt)
 	t_token		*new_token;
 	char		*word;
 	char		add_one[2];
-	int 		flag;
+	int			flag;
 
 	word = ft_strdup("");
 	add_one[1] = 0;
@@ -125,8 +118,6 @@ int	chk_dollar(t_main *main, int cnt)
 
 int	chk_dollar_ext(t_main *main)
 {
-	//TODO: Hacer que chequee que el $ está en la lista de Eugenio, No se
-	// como recorrer la lista de Eugenio, ver como la imprime.
 	int		ext;
 	t_list	*tmp_token;
 	t_list	*tmp_env;
@@ -146,7 +137,6 @@ int	chk_dollar_ext(t_main *main)
 						ext = 1;
 				tmp_env = tmp_env->next;
 			}
-
 		}
 		tmp_token = tmp_token->next;
 	}

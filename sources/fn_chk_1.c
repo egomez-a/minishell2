@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 12:19:58 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/27 12:47:59 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:37:18 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //TODO: Controlar el $ para expandir variables.
 
-int	chk_here(t_main *main, int cnt) 
+int	chk_here(t_main *main, int cnt)
 {
 	t_token		*new_token;
 
@@ -70,8 +70,8 @@ int	chk_quote(t_main *main, int cnt)
 	t_token		*new_token;
 	int			tmp_quote;
 	char		*word;
-	char 		add_one[2];
-	int 		flag;
+	char		add_one[2];
+	int			flag;
 
 	flag = ARG;
 	word = ft_strdup("");

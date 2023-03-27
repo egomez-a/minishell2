@@ -6,11 +6,18 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:01:44 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/27 14:47:49 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:39:19 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	chk_all(t_main *main, int cnt)
+{
+	return (main->line[cnt] == PIPE || main->line[cnt] == LESS || \
+		main->line[cnt] == MORE || main->line[cnt] == DQU || \
+		main->line[cnt] == SQU || main->line[cnt] == DOLLAR);
+}
 
 int	check_builtins(t_main *main)
 {

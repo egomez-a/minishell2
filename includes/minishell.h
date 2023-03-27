@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:53:58 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/27 13:39:54 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:41:01 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,10 +170,10 @@ int		chk_quote(t_main *main, int cnt);
 /*
 ** Check characters 2 (fn_chk2.c)
 */
-
+int		chk_dollar_question(t_main *main, int cnt);
 int		chk_dollar_alone(t_main *main, int cnt);
+int		chk_dollar_flag(t_main *main, int cnt);
 int		chk_dollar(t_main *main, int cnt);
-int		chk_all(t_main *main, int cnt);
 int		chk_dollar_ext(t_main *main);
 
 /*
@@ -191,6 +191,7 @@ void	ft_freemain(t_main *main);
 /*
 ** Execute functions (fn_execute.c)
 */
+int		chk_all(t_main *main, int cnt);
 int		check_builtins(t_main *main);
 void    fn_check_word(t_list *list, t_main *main);
 

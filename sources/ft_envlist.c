@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:22:52 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/27 14:27:41 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:34:25 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,4 @@ void	ft_env_list(t_main *main, char **env)
 		ft_lstadd_back(&main->envl, ft_lstnew(envlist));
 		i++;
 	}
-	// if (main->control == 1)
 }
