@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:13:35 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/28 12:44:35 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:47:21 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int	fn_cd(t_main *main)
 		if (ft_check_cd(route) == 1)
 		{
 			free(main->temp_pwd);
-			return (1);
+			main->ret = 1;
+			return (main->ret);
 		}
 		main->ret = ft_cd_path(main, route);
 		free(route);
