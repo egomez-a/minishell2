@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:53:58 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/28 12:44:21 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:38:36 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,14 @@ int		fn_clean_quotes(t_main *main);
 t_envel	*fn_enve_new(char *envi, char *string);
 char	**fn_myenv(void);
 void	ft_env_list(t_main *main, char **env);
+
+/*
+** List check env if unset (fn_envcheck.c)
+*/
+
+void	fn_check_env_lvlshl(t_main *main);
+void	fn_check_env_oldpwd(t_main *main);
+void	fn_check_env_pwd(t_main *main);
 
 /*
 **	List Unilities lists and matrix (fn_utilist.c)

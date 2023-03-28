@@ -6,7 +6,7 @@
 #    By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:46:35 by juasanto          #+#    #+#              #
-#    Updated: 2023/03/28 12:41:59 by egomez-a         ###   ########.fr        #
+#    Updated: 2023/03/28 15:37:27 by egomez-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS		=	minishell.c \
 				fn_chk_2.c \
 				fn_execute.c \
 				fn_directory.c \
+				fn_envcheck.c \
 				fn_builtin_pwd.c \
 				fn_builtin_echo.c \
 				fn_builtin_env.c \
