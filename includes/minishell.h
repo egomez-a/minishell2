@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:53:58 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/27 15:41:01 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:44:21 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,14 +195,25 @@ int		chk_all(t_main *main, int cnt);
 int		check_builtins(t_main *main);
 void    fn_check_word(t_list *list, t_main *main);
 
+
+/*
+** Directory functions (fn_directory.c)
+*/
+
+char	*update_oldpwd(t_main *main);
+void	update_key_envvariables(t_main *main);
+void	key_envvariables(t_main *main);
+int		ft_check_cd(char *directory);
+char	*ft_path_suffix(char *path, char *suffix);
+
 /*
 ** Built-in (fn_builtin_cd.c)
 */
 
-char    *update_oldpwd(t_main *main);
-void    update_key_envvariables(t_main *main);
-void    key_envvariables(t_main *main);
 int     ft_cd_alone(t_main *main);
+int		ft_cd_guion(t_main *main);
+int		ft_cd_path(t_main *main, char *route);
+char	*ft_cd_route(t_main *main, char **arguments);
 int 	fn_cd(t_main *main);
 
 /*
