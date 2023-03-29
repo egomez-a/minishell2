@@ -114,14 +114,35 @@ void	export_token(t_main *main)
 					main->exe_commands[i]->args[++j] = ((t_token *)tokens->content)->word ;
 					tokens = tokens->next;
 				}
-
-
+				if (((t_token *)tokens->content)->type == MORE)
+				{
+					tokens = tokens->next;
+					main->exe_commands[i]->fd_out = open(); //salida
+					tokens = tokens->next;
+					if (((t_token *)tokens->content)->type == LESS)
+					{
+						tokens = tokens->next;
+						main->exe_commands[i]->fd_in = open(); //entrada
+						tokens = tokens->next;
+					}
+				}
+				else if (((t_token *)tokens->content)->type == LESS)
+				{
+					tokens = tokens->next;
+					main->exe_commands[i]->fd_in = open(); //entrada
+					tokens = tokens->next;
+					if (((t_token *)tokens->content)->type == MORE)
+					{
+						tokens = tokens->next;
+						main->exe_commands[i]->fd_out = open(); //salida
+						tokens = tokens->next;
+					}
+				}
 			}
 			else if (((t_token *)tokens->content)->type == HERE)
 			{
 
 			}
-
 		}
 		main->exe_commands->cmd = ((t_token *)tokens->content)->word;
 		while ()
