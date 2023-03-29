@@ -6,14 +6,13 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:14:41 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/21 13:57:19 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:41:08 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 /* 
-** cuando estoy en bash, ojo 
 ** export imprime "declare -x" y luego los nombres ordenados por ascii de las 
 ** variables de entorno, luego '=' y luego las variables de entorno entre comillas.
 ** Si no hay variables de entorno tienen que estar las mínimas que son PWD y SHLVL

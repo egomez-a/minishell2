@@ -6,15 +6,15 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:15:56 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/27 11:44:40 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/28 14:18:55 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/* 
+/*
 ** imprime los nombres de variables de entorno "=" las variables
-** Si no hay variables de entorno tienen que estar las mínimas que son PWD y SHLVL
+** Si no hay variables de entorno tienen que estar las mínimas: PWD y SHLVL
 */
 
 /*  Esto es muy util para ver el casteo de las variables */
@@ -30,8 +30,12 @@ void	print_envlist(t_list *list)
 	}
 }
 
-// Estas funciones buscan los valores que hay en PATH y los mete en una matriz que me sirva luego para 
-// añadir al primer comando y comprobar si es ejecutable. 
+/*
+** Estas funciones buscan los valores que hay en PATH y los mete en 
+** una matriz que me sirva luego para 
+** añadir al primer comando y comprobar si es ejecutable. 
+*/
+ 
 char	**paths_with_separator(char *paths)
 {
 	char	**matrixpaths;
@@ -77,9 +81,14 @@ int		fn_env(t_main   *main)
 	list = main->envl;
     while (list != NULL && ((t_envel *)list->content)->name != NULL)
 	{
-		printf("%s", ((t_envel *)list->content)->name);
-        printf("=");
-		printf("%s\n", ((t_envel *)list->content)->value);
+		write (1, ((t_envel *)list->content)->name, 
+				ft_strlen(((t_envel *)list->content)->name));
+		// printf("%s", ((t_envel *)list->content)->name);
+        write(1, "=", 1);
+		write (1, ((t_envel *)list->content)->value,
+				ft_strlen(((t_envel *)list->content)->value));
+		write (1, "\n", 1);
+		// printf("%s\n", ((t_envel *)list->content)->value);
 		list = list->next;
 	}
 	return (0);
