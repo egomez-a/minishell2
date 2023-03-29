@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:16:28 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/29 15:45:35 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:01:57 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,20 @@ int	fn_exit(t_main *main)
 		printf("minishell: exit: too many arguments\n");
 		main->ex = 0;
 		free(temp);
-		return (1);
+		main->ret = 1;
 	}
 	else if (ft_lstsize(main->commands) == 2 && !is_strnum(temp))
 	{
 		printf("minishell: exit: %s: numeric argument required\n", temp);
 		free(temp);
-		return (255);
+		main->ret = 255;
 	}
 	else if (ft_lstsize(main->commands) == 2)
-		return (fn_exit1(temp));
+		main->ret = fn_exit1(temp);
 	else
 	{
 		free(temp);
-		return (0);
+		main->ret = 0;
 	}
+	return (main->ret);
 }

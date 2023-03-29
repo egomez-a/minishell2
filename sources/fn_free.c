@@ -6,11 +6,20 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 13:24:56 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/29 15:02:43 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:59:08 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_free_exe(t_exe *exe_commands)
+{
+	if (exe_commands->cmd)
+		free(exe_commands->cmd);
+	if (!exe_commands->args)
+		return ;
+	ft_free_array(exe_commands->args);
+}
 
 void	ft_free_envel(void *content)
 {
@@ -46,9 +55,12 @@ void	ft_free_token(void *content)
 	if (!content)
 		return ;
 	token = content;
-	free(token->word);
-	free(token->extvar);
-	free(token);
+	if (token->word != NULL)
+		free(token->word);
+	if (token->extvar != NULL)
+		free(token->extvar);
+	if (token)
+		free(token);
 }
 
 void	ft_freemain(t_main *main)
@@ -61,9 +73,7 @@ void	ft_freemain(t_main *main)
 		free(main->temp_pwd);
 	if (!main->temp_oldpwd)
 		free(main->temp_oldpwd);
-	ft_free_token(main->tokens);
 	ft_lstclear(&main->envl, ft_free_envel);
-	free(main->envlist);
-// 	free(main->exe_commands);
+	// free(main->envlist);
 // 	free(main);
 }

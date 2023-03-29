@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:53:58 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/29 14:37:16 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:41:06 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,8 @@ int		chk_dollar_ext(t_main *main);
 ** Clear tokens (fn_free.c)
 */
 
-void	ft_free_list(t_list *list);
+void	ft_free_exe(t_exe *exe_commands);
 void	ft_free_envel(void *content);
-void	fn_free_exe(t_exe *exe_commands);
-void	fn_lstdelone(t_list *commands, void (*del)(void *));
 void	ft_tokenclear(t_list **commands, void (*del)(void *));
 void 	ft_free_token(void *content);
 void	ft_freemain(t_main *main);

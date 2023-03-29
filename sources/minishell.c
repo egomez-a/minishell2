@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:51:25 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/29 15:05:34 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:04:17 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char **argv, char **env)
 				break;
 			if (fn_clean_quotes(main) != 0)
 			{
-				printf("ErrorNúmero impar de quotes\n");
+				printf("Error: Número impar de quotes\n");
 				main->ret = 1;
 				ft_freemain(main);
 				exit(main->ret);
@@ -107,6 +107,7 @@ int	main(int argc, char **argv, char **env)
 		if (main->ex != 1)
 			free(main->line);
 		ft_lstclear(&main->commands, ft_free_token);
+		// ft_free_exe(main->exe_commands);
 	}
 	ft_freemain(main);
 	system("leaks -q minishell");
