@@ -25,12 +25,16 @@ char	**args_list_into_matrix(t_main *main)
 	args = (char **)ft_calloc(sizeof(char *), main->lenght_line + 1);
 	i = 0;
 	tokens = (t_list *)main->commands;
-	while ((tokens != NULL) && ((t_token *)tokens->content)->type == ARG)
+	while (tokens != NULL)
 	{
-		args[i] = ((t_token *)tokens->content)->word;
-		i++;
+		if (((t_token *)tokens->content)->type == ARG)
+		{
+			args[i] = ((t_token *)tokens->content)->word;
+			i++;
+		}
 		tokens = tokens->next;
 	}
+	args[i] = NULL;
 	return (args);
 }
 
@@ -46,6 +50,20 @@ void	print_list(t_list *list)
 		// printf("Quote: %i\n", ((t_token *)list->content)->quote);
 		list = list->next;
 	}
+}
+
+int	count_pipes(t_list *list)
+{
+	int cont;
+
+	cont = 0;
+	while (list != NULL)
+	{
+		if (((t_token *)list->content)->type == PIPE)
+			cont++;
+		list = list->next;
+	}
+	return (cont);
 }
 
 void	first_token_cmd(t_list *list)

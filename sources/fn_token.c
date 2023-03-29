@@ -84,7 +84,7 @@ t_token	*fn_token_list(t_main *main)
 			{
 				cnt = cnt + word_nam(main, type, SPACE, cnt);
 				type = ARG;
-			}		
+			}
 		}
 	}
 	return (main->tokens);

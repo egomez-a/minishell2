@@ -49,7 +49,7 @@ READLINE_LIB_DIR_FLAG := -L$(shell brew --prefix readline)/lib
 READLINE_INC_DIR_FLAG := -I$(shell brew --prefix readline)/include
 
 LFLAGS = -I includes/
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 LDFLAGS = -lncurses -lreadline $(READLINE_LIB_DIR_FLAG) 
 CPPFLAGS = $(READLINE_INC_DIR_FLAG) 
 # LDFLAGS = -lncurses -lreadline $(RLINE_FLG_E42) 

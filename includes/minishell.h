@@ -76,6 +76,7 @@ typedef struct s_token
 typedef struct s_exe
 {
 	char	*cmd;
+	int		is_built;
 	char	**args;
 	int 	fd_in;
 	int		fd_out;
@@ -102,6 +103,7 @@ typedef struct s_main
 	char		*temp_pwd;
 	char		*temp_oldpwd;
 	int			lenght_line;
+	int			num_comm;
 	t_pip		pid;
 	t_list		*commands;
 	t_token		*tokens;
@@ -149,6 +151,7 @@ void	ft_env_list(t_main *main, char **env);
 char	**args_list_into_matrix(t_main *main);
 void	print_list(t_list *list);
 void	first_token_cmd(t_list *list);
+int		count_pipes(t_list *list);
 
 /*
 **	Creation of tokens (fn_token.c)
