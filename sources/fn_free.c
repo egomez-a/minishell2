@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 13:24:56 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/27 15:35:56 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:02:43 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,17 @@ void	ft_free_token(void *content)
 
 void	ft_freemain(t_main *main)
 {
-	free(main->line);
-	free(main->home);
-	free(main->temp_pwd);
-	free(main->temp_oldpwd);
+	if (!main->line)
+		free(main->line);
+	if (!main->home)
+		free(main->home);
+	if (!main->temp_pwd)
+		free(main->temp_pwd);
+	if (!main->temp_oldpwd)
+		free(main->temp_oldpwd);
 	ft_free_token(main->tokens);
 	ft_lstclear(&main->envl, ft_free_envel);
 	free(main->envlist);
-	free(main->exe_commands);
-	free(main);
+// 	free(main->exe_commands);
+// 	free(main);
 }

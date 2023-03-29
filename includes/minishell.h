@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:53:58 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/28 15:38:36 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:37:16 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,9 +255,9 @@ int		fn_exit(t_main *main);
 */
 
 char    **env_to_matrix(int num, t_list *list);
+void	order_matrix(char **matrix, int num);
 int     order_env_matrix(char **matrix, int num);
 int		fn_export(t_main *main);
-
 
 /*
 ** Built-in (fn_builtin_pwd.c)

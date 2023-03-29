@@ -6,26 +6,27 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:14:41 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/29 13:26:06 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:34:49 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/* 
-** export imprime "declare -x" y luego los nombres ordenados por ascii de las 
-** variables de entorno, luego '=' y luego las variables de entorno entre comillas.
-** Si no hay variables de entorno tienen que estar las mínimas que son PWD y SHLVL
-** Si pongo export hola=adios, entonces sale al final una nueva var de entorno 
+/*
+** export imprime "declare -x" y luego los nombres ordenados por ascii de las
+** variables de entorno, luego '=' y luego las variables de entorno entre
+** comillas. Si no hay variables de entorno tienen que estar las mínimas que
+** son PWD y SHLVL. 
+** Si pongo export hola=adios, sale al final una nueva var de entorno
 ** hola="adios"
-** Para hacerlo voy a meter las variables de entorno en una matriz **temp
+** Para hacerlo meto variables de entorno en una matriz **temp
 */
 
-char    **env_to_matrix(int num, t_list *list)
+char	**env_to_matrix(int num, t_list *list)
 {
-	char    **temp;
-	int     i;
-	char    *aux;
+	char	**temp;
+	int		i;
+	char	*aux;
 
 	temp = ft_calloc(num + 1, sizeof(char *));
 	i = 0;
@@ -37,16 +38,37 @@ char    **env_to_matrix(int num, t_list *list)
 		i++;
 		list = list->next;
 	}
-	printf("La matriz tiene %d elementos\n", ft_matrixlen(temp));
 	return (temp);
 }
 
-int     order_env_matrix(char **matrix, int num)
+void	order_matrix(char **matrix, int num)
 {
-	char    *temp;
-	char    **mat_ord;
-	int     i;
-	int     j;
+	int		i;
+	int		j;
+	char	*temp;
+
+	i = 1;
+	while (i < num)
+	{
+		j = 0;
+		while (j < num - i)
+		{
+			if (ft_strcmp(matrix[j], matrix[j + 1]) > 0)
+			{
+				temp = ft_strdup(matrix[j]);
+				matrix[j] = ft_strdup(matrix[j + 1]);
+				matrix[j + 1] = ft_strdup(temp);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int	order_env_matrix(char **matrix, int num)
+{
+	char	**mat_ord;
+	int		i;
 
 	mat_ord = ft_calloc(num + 1, sizeof(char *));
 	i = 0;
@@ -56,22 +78,7 @@ int     order_env_matrix(char **matrix, int num)
 		i++;
 	}
 	mat_ord[i] = NULL;
-	i = 1;
-	while (i < num)
-	{
-		j = 0;
-		while (j < num - i)
-		{
-			if (ft_strcmp(mat_ord[j], mat_ord[j + 1]) > 0)
-			{
-				temp = ft_strdup(mat_ord[j]);
-				mat_ord[j] = ft_strdup(mat_ord[j + 1]);
-				mat_ord[j + 1] = ft_strdup(temp);
-			}
-			j++;
-		}
-		i++;
-	}
+	order_matrix(mat_ord, num);
 	i = 0;
 	while (i < num)
 	{
@@ -82,13 +89,13 @@ int     order_env_matrix(char **matrix, int num)
 	return (i);
 }
 
-int    fn_export(t_main *main)
+int	fn_export(t_main *main)
 {
-	char    **temp;
-	t_list  *list;
+	char	**temp;
+	t_list	*list;
 	t_envel	*temparg;
-	int     num;
-	int 	i;
+	int		num;
+	int		i;
 
 	list = main->envl;
 	if (ft_matrixlen(main->exe_commands->args) != 0)
@@ -96,7 +103,8 @@ int    fn_export(t_main *main)
 		i = 0;
 		while (main->exe_commands->args[i])
 		{
-			temparg = fn_enve_new(main->exe_commands->args[i], ft_strchr(main->exe_commands->args[i], '='));
+			temparg = fn_enve_new(main->exe_commands->args[i],
+					ft_strchr(main->exe_commands->args[i], '='));
 			ft_lstadd_back(&main->envl, ft_lstnew(temparg));
 			i++;
 		}
@@ -105,5 +113,5 @@ int    fn_export(t_main *main)
 	num = ft_lstsize(list);
 	temp = env_to_matrix(num, list);
 	main->ret = order_env_matrix(temp, num);
-	return (0);  
+	return (0);
 }
