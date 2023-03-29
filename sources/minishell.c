@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:51:25 by juasanto          #+#    #+#             */
-/*   Updated: 2023/03/27 14:57:24 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:03:36 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ int	main(int argc, char **argv, char **env)
 		if (main->ex != 1)
 			free(main->line);
 		ft_lstclear(&main->commands, ft_free_token);
-		ft_free_array(main->exe_commands->args);
+		// if (main->exe_commands->args)
+		// 	ft_free_array(main->exe_commands->args);
 	}
 	ft_freemain(main);
 	system("leaks -q minishell");

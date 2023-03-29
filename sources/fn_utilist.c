@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 09:48:55 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/27 15:35:09 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:02:44 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**args_list_into_matrix(t_main *main)
 	args = (char **)ft_calloc(sizeof(char *), main->lenght_line + 1);
 	i = 0;
 	tokens = (t_list *)main->commands;
+	tokens = tokens->next;
 	while ((tokens != NULL) && ((t_token *)tokens->content)->type == ARG)
 	{
 		args[i] = ((t_token *)tokens->content)->word;

@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:15:56 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/28 14:18:55 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:31:32 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,10 @@ int		fn_env(t_main   *main)
 	{
 		write (1, ((t_envel *)list->content)->name, 
 				ft_strlen(((t_envel *)list->content)->name));
-		// printf("%s", ((t_envel *)list->content)->name);
         write(1, "=", 1);
 		write (1, ((t_envel *)list->content)->value,
 				ft_strlen(((t_envel *)list->content)->value));
 		write (1, "\n", 1);
-		// printf("%s\n", ((t_envel *)list->content)->value);
 		list = list->next;
 	}
 	return (0);
