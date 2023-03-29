@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:47:38 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/22 14:06:12 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:31:40 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ int	flag_n_check(char *args)
 	return (n_flag);
 }
 
-// hay que meter los tokens en una matrix, pero diferenciar antes entre los que son
-// argumentos y los que son comandos, para que luego podamos buscar los -n
-char 	**tokens_into_matrix(t_main *main)
+char	*tokens_into_matrix(t_main *main)
 {
 	int		i;
 	char	**args;
@@ -51,22 +49,19 @@ char 	**tokens_into_matrix(t_main *main)
 	while (tokens != NULL)
 	{
 		args[i] = ((t_token *)tokens->content)->word;
-		// printf("Token %d es %s\n", i, args[i]);
 		i++;
 		tokens = tokens->next;
 	}
 	main->listsize = i;
-	// printf("Tamaño de la lista es %d\n", main->listsize);
 	return (args);
 }
 
-// chequeo si el argumento que viene después de $ es una variable de entorno. 
-char *checkenvdollar(char *string, t_main *main)
+char	*checkenvdollar(char *string, t_main *main)
 {
 	t_list	*list;
 	char	*dollarextvar;
 
-	dollarextvar = NULL;	
+	dollarextvar = NULL;
 	list = main->envl;
 	while (list != NULL && ((t_envel *)list->content)->name != NULL)
 	{
@@ -81,8 +76,8 @@ int	fn_echo(t_main *main, int n_flag)
 {
 	char	**args;
 	t_list	*tokens;
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 	char	*check;
 
 	args = tokens_into_matrix(main);
@@ -90,18 +85,12 @@ int	fn_echo(t_main *main, int n_flag)
 	j = 0;
 	check = NULL;
 	while (args[i])
-	{
-		n_flag = n_flag + flag_n_check(args[i]);
-		// printf("Arg %d is %s and n_flag is %d\n", i, args[i], n_flag);
-		i++;
-	}
+		n_flag += flag_n_check(args[i++]);
 	i = 0;
 	tokens = (t_list *)main->commands;
 	while (tokens != NULL)
 	{
-		if (((t_token *)tokens->content)->type == CMD)
-			i++;
-		else if (((t_token *)tokens->content)->type == ARG)
+		if (((t_token *)tokens->content)->type == ARG)
 		{
 			j = i + n_flag;
 			ft_putstr_fd(args[j], 1);
@@ -109,28 +98,24 @@ int	fn_echo(t_main *main, int n_flag)
 				write (1, " ", 1);
 			i++;
 		}
-		else if (((t_token *)tokens->content)->type == DOLLAR
-				|| ((t_token *)tokens->content)->type == DOLENC)
-			i++;
 		else if (((t_token *)tokens->content)->type == DOLARG)
 		{
 			check = checkenvdollar(args[i], main);
-			if (check != NULL)
+			if (check)
 			{
 				args[i] = check;
-				ft_putstr_fd(args[i], 1);
+				ft_putstr_fd(args[i++], 1);
 				if ((j < main->listsize - 1) && main->dollaralone == 0)
-				write (1, " ", 1);
-				i++;
+					write (1, " ", 1);
 			}
-			else 
+			else
 				i++;
 		}
+		else if (((t_token *)tokens->content)->type == CMD)
+			i++;
 		tokens = tokens->next;
 	}
 	if (n_flag == 0)
 		write(1, "\n", 1);
 	return (0);
 }
-
-/* me falta ser capaz de tratar el espacio si pongo echo hola $PWD o echo hola$PWD */

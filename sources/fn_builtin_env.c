@@ -6,7 +6,7 @@
 /*   By: egomez-a <egomez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:15:56 by egomez-a          #+#    #+#             */
-/*   Updated: 2023/03/29 12:31:32 by egomez-a         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:18:46 by egomez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	print_envlist(t_list *list)
 ** una matriz que me sirva luego para 
 ** añadir al primer comando y comprobar si es ejecutable. 
 */
- 
+
 char	**paths_with_separator(char *paths)
 {
 	char	**matrixpaths;
@@ -44,7 +44,8 @@ char	**paths_with_separator(char *paths)
 
 	matrixpaths = ft_split(paths, ':');
 	i = 0;
-	matrixwithseparator = ft_calloc(ft_matrixlen(matrixpaths) + 2, sizeof(char *));
+	matrixwithseparator = ft_calloc(ft_matrixlen(matrixpaths) + 2,
+			sizeof(char *));
 	i = 0;
 	while (i < ft_matrixlen(matrixpaths))
 	{
@@ -52,7 +53,6 @@ char	**paths_with_separator(char *paths)
 		i++;
 	}
 	matrixwithseparator[i + 1] = NULL;
-	//free(paths);
 	ft_free_array(matrixpaths);
 	return (matrixwithseparator);
 }
@@ -71,21 +71,21 @@ char	**paths_from_env(t_main *main)
 		list = list->next;
 	}
 	matrix = paths_with_separator(paths);
- 	return (matrix);
+	return (matrix);
 }
 
-int		fn_env(t_main   *main)
+int	fn_env(t_main *main)
 {
 	t_list	*list;
 
 	list = main->envl;
-    while (list != NULL && ((t_envel *)list->content)->name != NULL)
+	while (list != NULL && ((t_envel *)list->content)->name != NULL)
 	{
-		write (1, ((t_envel *)list->content)->name, 
-				ft_strlen(((t_envel *)list->content)->name));
-        write(1, "=", 1);
+		write (1, ((t_envel *)list->content)->name,
+			ft_strlen(((t_envel *)list->content)->name));
+		write (1, "=", 1);
 		write (1, ((t_envel *)list->content)->value,
-				ft_strlen(((t_envel *)list->content)->value));
+			ft_strlen(((t_envel *)list->content)->value));
 		write (1, "\n", 1);
 		list = list->next;
 	}
