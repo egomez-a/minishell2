@@ -77,6 +77,8 @@ typedef struct s_exe
 {
 	char	*cmd;
 	int		is_built;
+	int		is_here;
+	char	*lim;
 	char	**args;
 	int 	fd_in;
 	int		fd_out;
@@ -103,7 +105,7 @@ typedef struct s_main
 	char		*temp_pwd;
 	char		*temp_oldpwd;
 	int			lenght_line;
-	int			num_comm;
+	int			num_cmd;
 	t_pip		pid;
 	t_list		*commands;
 	t_token		*tokens;
@@ -160,6 +162,7 @@ char	**args_list_into_matrix(t_main *main);
 void	print_list(t_list *list);
 void	first_token_cmd(t_list *list);
 int		count_pipes(t_list *list);
+void	print_comands(t_main *main);
 
 /*
 **	Creation of tokens (fn_token.c)
@@ -273,5 +276,18 @@ int		fn_pwd(void);
 */
 
 int		fn_unset(t_main *main);
+
+/*
+** Commands (fn_commands.c)
+*/
+
+
+int	add_args(t_main *main, t_list *tokens, int num);
+int	is_redirect(t_list *tokens);
+int	add_redirect_in(t_main *main, t_list *tokens, int num);
+int	add_redirect_here(t_main *main, t_list *tokens, int num);
+int	add_redirect_out(t_main *main, t_list *tokens, int num);
+int	add_redirect_append(t_main *main, t_list *tokens, int num);
+void	init_command(t_main *main, int num);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-/* Para liberar el contenido de la lista enlazada y 
+/* Para liberar el contenido de la lista enlazada y
 ** evitar los problemas de leaks
 */
 
@@ -84,4 +84,28 @@ void	first_token_cmd(t_list *list)
 		}
 		list = list->next;
 	}
+}
+
+void	print_comands(t_main *main)
+{
+	int	j;
+	int	i;
+
+	i = 0;
+	while (i < main->num_cmd)
+	{
+		printf("Comando: %s\n", main->exe_commands[i].cmd);
+		j = 0;
+		while (main->exe_commands[i].args[j] != NULL)
+		{
+			printf("Argumento %d: %s\n", j + 1, main->exe_commands[i].args[j]);
+			j++;
+		}
+		printf("fd_in: %d\n", main->exe_commands[i].fd_in);
+		printf("fd_out: %d\n", main->exe_commands[i].fd_out);
+		printf("is_here: %d\n", main->exe_commands[i].is_here);
+		printf("lim: %s\n\n", main->exe_commands[i].lim);
+		i++;
+	}
+
 }

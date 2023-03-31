@@ -63,3 +63,5 @@ void	ft_freemain(t_main *main)
 	free(main->exe_commands);
 	free(main);
 }
+
+

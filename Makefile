@@ -32,6 +32,7 @@ SRCS		=	minishell.c \
 				fn_builtin_export.c \
 				fn_builtin_unset.c \
 				fn_builtin_exit.c \
+				fn_commands.c \
 				fn_builtin_cd.c 
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
