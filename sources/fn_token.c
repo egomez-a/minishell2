@@ -20,6 +20,7 @@ t_token	*fn_token_new(char *word, int type, int fd, int quo)
 	temp->word = ft_strdup(word);
 	temp->extvar = NULL;
 	temp->type = type;
+	printf("ANADIMOS %s ( %d )\n", word, type);
 	temp->fd = fd;
 	temp->quote = quo;
 	return (temp);

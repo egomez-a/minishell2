@@ -68,21 +68,20 @@ int	count_pipes(t_list *list)
 
 void	first_token_cmd(t_list *list)
 {
-	if ((((t_token *)list->content)->type) != RD
-		|| (((t_token *)list->content)->type) != APPEND
-		|| (((t_token *)list->content)->type) != HERE)
-	{
-		(((t_token *)list->content)->type) = CMD;
-	}
-	list = list->next;
 	while (list != NULL)
 	{
-		if ((((t_token *)list->content)->type) == PIPE)
+		if ((((t_token *)list->content)->type) == RD
+			|| (((t_token *)list->content)->type) == APPEND
+			|| (((t_token *)list->content)->type) == HERE)
 		{
 			list = list->next;
-			(((t_token *)list->content)->type) = CMD;
+			list = list->next;
 		}
-		list = list->next;
+		else
+		{
+			((t_token *)list->content)->type = CMD;
+			break ;
+		}
 	}
 }
 
@@ -94,7 +93,7 @@ void	print_comands(t_main *main)
 	i = 0;
 	while (i < main->num_cmd)
 	{
-		printf("Comando: %s\n", main->exe_commands[i].cmd);
+		printf("\nComando: %s\n", main->exe_commands[i].cmd);
 		j = 0;
 		while (main->exe_commands[i].args[j] != NULL)
 		{

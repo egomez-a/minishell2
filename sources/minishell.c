@@ -87,19 +87,17 @@ void	export_token(t_main *main)
 
 	i = 0;
 	tokens = (t_list *)main->commands;
-	first_token_cmd(tokens);
 	print_list(tokens);
 	main->num_cmd = count_pipes(tokens) + 1;
 	printf("Num PIPES: %d\n", count_pipes(tokens));
 	main->exe_commands = ft_calloc(sizeof (t_exe), main->num_cmd);
 	while (i < main->num_cmd)
 	{
+		first_token_cmd(tokens);
 		init_command(main, i);
-		printf("Holaaaaa\n");
         while (tokens != NULL && ((t_token *)tokens->content)->type != PIPE)
         {
             cont_aux = 0;
-			printf("QWWWQQWQW: %d\n", ((t_token *)tokens->content)->type);
             if (((t_token *)tokens->content)->type == CMD)
             {
                 main->exe_commands[i].cmd = ((t_token *)tokens->content)->word;

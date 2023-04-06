@@ -290,4 +290,10 @@ int	add_redirect_out(t_main *main, t_list *tokens, int num);
 int	add_redirect_append(t_main *main, t_list *tokens, int num);
 void	init_command(t_main *main, int num);
 
+/*
+** get_path_cmd.c
+*/
+
+char	**get_cmd(const char *arg_cmd, char **envp);
+
 #endif
