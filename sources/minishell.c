@@ -87,18 +87,20 @@ void	export_token(t_main *main)
 
 	i = 0;
 	tokens = (t_list *)main->commands;
-	print_list(tokens);
 	main->num_cmd = count_pipes(tokens) + 1;
 	printf("Num PIPES: %d\n", count_pipes(tokens));
+	print_list(tokens);
+	//set_command(main);
+	//print_list(tokens);
 	main->exe_commands = ft_calloc(sizeof (t_exe), main->num_cmd);
 	while (i < main->num_cmd)
 	{
-		first_token_cmd(tokens);
+		//first_token_cmd(tokens);
 		init_command(main, i);
         while (tokens != NULL && ((t_token *)tokens->content)->type != PIPE)
         {
             cont_aux = 0;
-            if (((t_token *)tokens->content)->type == CMD)
+            if (((t_token *)tokens->content)->type == ARG)
             {
                 main->exe_commands[i].cmd = ((t_token *)tokens->content)->word;
                 tokens = tokens->next;
@@ -123,10 +125,20 @@ void	export_token(t_main *main)
                     tokens = tokens->next;
                 }
             }
-            else if (((t_token *)tokens->content)->type == HERE)
+            else if (is_redirect(tokens) == 1)
             {
-				printf("Estoy aqui\n");
-                cont_aux = add_redirect_append(main, tokens, i);
+                while (is_redirect(tokens) == 1)
+                {
+            		if (((t_token *)tokens->content)->type == LESS)
+                        cont_aux = add_redirect_in(main, tokens, i);
+                    else if (((t_token *)tokens->content)->type == HERE)
+                        cont_aux = add_redirect_here(main, tokens, i);
+                    else if (((t_token *)tokens->content)->type == MORE)
+                        cont_aux = add_redirect_out(main, tokens, i);
+                    else if (((t_token *)tokens->content)->type == APPEND)
+                        cont_aux = add_redirect_append(main, tokens, i);
+                    tokens = tokens->next;
+                }
                 if (cont_aux == 0)
                     break ;
                 tokens = tokens->next;

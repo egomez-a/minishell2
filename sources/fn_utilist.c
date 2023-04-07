@@ -68,9 +68,12 @@ int	count_pipes(t_list *list)
 
 void	first_token_cmd(t_list *list)
 {
+		
 	while (list != NULL)
 	{
-		if ((((t_token *)list->content)->type) == RD
+		printf("lol\n");
+		if ((((t_token *)list->content)->type) == LESS
+			|| (((t_token *)list->content)->type) == MORE
 			|| (((t_token *)list->content)->type) == APPEND
 			|| (((t_token *)list->content)->type) == HERE)
 		{

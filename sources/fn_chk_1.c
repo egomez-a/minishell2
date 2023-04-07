@@ -20,7 +20,6 @@ int	chk_here(t_main *main, int cnt)
 
 	if (main->line[cnt] == LESS && main->line[cnt + 1] == LESS)
 	{
-		printf("HOLAAAAAAAAAAAAAAAAAAAAAA\n");
 		new_token = fn_token_new("<<", HERE, 1, 0);
 		ft_lstadd_back(&main->commands, ft_lstnew(new_token));
 		cnt = (cnt + word_nam(main, ARG, 32, cnt + 2)) + 2;
